@@ -55,3 +55,27 @@ AttributeError: 'NoneType' object has no attribute 'chat'
 2026-04-23 06:51:55,934 - utils - INFO - Complete evaluations: 3/3 (100.0%)
 2026-04-23 06:51:55,934 - utils - WARNING - No score pairs for ICC calculation
 2026-04-23 06:51:55,935 - utils - INFO - Summary saved to results/gpt-4_summary.json
+2026-04-23 07:02:50,721 - utils - INFO - Starting mock CTTAF benchmark (local, free)
+2026-04-23 07:02:50,721 - utils - INFO -   Model: mock-gpt-4
+2026-04-23 07:02:50,721 - utils - INFO -   Questions: /Users/joshuajohnson/Projects/cttaf-benchmark/evaluation/../../data/questions/cttaf_questions_sample_100.csv
+2026-04-23 07:02:50,721 - utils - INFO -   Output: results
+2026-04-23 07:02:50,722 - utils - INFO -   Seed: 42
+2026-04-23 07:02:50,722 - utils - INFO -   Judge variance: 1.0
+2026-04-23 07:02:50,722 - utils - ERROR - Questions file not found: /Users/joshuajohnson/Projects/cttaf-benchmark/evaluation/../../data/questions/cttaf_questions_sample_100.csv
+2026-04-23 07:02:53,603 - utils - INFO - Starting mock CTTAF benchmark (local, free)
+2026-04-23 07:02:53,603 - utils - INFO -   Model: mock-gpt-4
+2026-04-23 07:02:53,603 - utils - INFO -   Questions: /Users/joshuajohnson/Projects/cttaf-benchmark/evaluation/../data/questions/cttaf_questions_sample_100.csv
+2026-04-23 07:02:53,603 - utils - INFO -   Output: results
+2026-04-23 07:02:53,603 - utils - INFO -   Seed: 42
+2026-04-23 07:02:53,603 - utils - INFO -   Judge variance: 1.0
+2026-04-23 07:02:53,603 - utils - INFO - Initialized mock evaluator for model: mock-gpt-4 (seed=42)
+2026-04-23 07:02:53,605 - utils - INFO - Loaded 3 questions from /Users/joshuajohnson/Projects/cttaf-benchmark/evaluation/../data/questions/cttaf_questions_sample_100.csv
+2026-04-23 07:02:53,605 - utils - INFO - Limited to first 5 questions
+2026-04-23 07:02:53,605 - utils - INFO - [1/3] Evaluating q001...
+2026-04-23 07:02:53,605 - utils - INFO - [2/3] Evaluating q002...
+2026-04-23 07:02:53,605 - utils - INFO - [3/3] Evaluating q003...
+2026-04-23 07:02:53,605 - utils - INFO - Mock evaluation complete. Results saved to results/mock-gpt-4_results.json
+2026-04-23 07:03:00,359 - utils - INFO - Aggregating 3 results for model: mock-gpt-4
+2026-04-23 07:03:00,359 - utils - INFO - Complete evaluations: 3/3 (100.0%)
+2026-04-23 07:03:00,360 - utils - INFO - Inter-judge ICC(2,1): -0.312 (n=3)
+2026-04-23 07:03:00,360 - utils - INFO - Summary saved to results/mock-gpt-4_summary.json
