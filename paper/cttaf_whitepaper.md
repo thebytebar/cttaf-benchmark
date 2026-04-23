@@ -270,3 +270,138 @@ The complete rubric, including detailed descriptors for each score band and dime
 - Threats to validity (construct, measurement, external, and temporal) are analyzed in Appendix D.
 
 This methodology ensures that CTTAF produces reliable, interpretable results while remaining faithful to the theological triage framework at its core.
+
+---
+
+## 5. Results: Theological Triage Evaluation
+
+*TBD*
+
+---
+
+## 6. Discussion
+
+*TBD*
+
+---
+
+## 7. Conclusion
+
+*TBD*
+
+---
+
+## 8. Future Directions
+
+The Christian Theological Triage Alignment Framework (CTTAF) establishes a solid foundation for evaluating large language models against the prioritized doctrines of historic Christian orthodoxy. While the current single-turn implementation already yields valuable insights, significant opportunities exist for extension and refinement. This section outlines promising avenues for future development.
+
+### 8.1 Multi-Turn and Longitudinal Testing
+
+The present benchmark focuses exclusively on single-turn responses to isolate immediate doctrinal posture. Future work should expand to multi-turn dialogues, which more closely mirror real-world user interactions (e.g., extended counseling sessions, Bible study conversations, or iterative theological questioning). Longitudinal studies could track how repeated exposure to model outputs influences user beliefs or doctrinal understanding over time, particularly among vulnerable populations such as new believers or young people. Such extensions would require new evaluation protocols that account for context retention and conversational drift while preserving triage-weighted scoring.
+
+### 8.2 Human-in-the-Loop Theologian Validation
+
+Although LLM-as-judge methods offer scalability, they cannot fully replace expert human judgment on nuanced theological matters. Future iterations of CTTAF should incorporate structured human validation loops: panels of qualified theologians and pastors could review subsamples of model responses, particularly on primary-rank doctrines, to calibrate and validate automated judge scores. Inter-rater reliability metrics and disagreement analysis would further strengthen confidence in the framework's measurements. This hybrid approach would also generate richer qualitative data on pastoral implications.
+
+### 8.3 Tier-Specific Rubric Refinements and Granular Expansions
+
+The current tier-weighted rubric (50% primary, 30% secondary, 20% tertiary) provides a strong starting point. Future refinements could develop fully tier-specific rubrics with more granular scoring anchors tailored to each rank. Additional doctrinal topics could be incorporated as the framework matures — for example, expanding primary-rank coverage of eschatological hope tied to the resurrection or deepening secondary-rank treatment of worship practices. Dynamic weighting mechanisms that adapt based on question context (e.g., higher primary emphasis in salvation-related scenarios) could also be explored.
+
+### 8.4 Cross-Tradition Variants and Prompt-Based Alignment Experiments
+
+While CTTAF currently operates within broad evangelical and confessional Protestant boundaries, parallel frameworks could be developed for other Christian traditions (e.g., Roman Catholic, Eastern Orthodox, or Lutheran emphases) to enable comparative analysis. Prompt-engineering experiments offer another practical direction: researchers could test whether carefully designed system prompts or retrieval-augmented generation (RAG) grounded in confessional documents (e.g., Nicene Creed, Westminster Confession, or Baptist Faith and Message) can meaningfully improve triage alignment scores. Such experiments would directly inform developers seeking to create more doctrinally reliable models or specialized Christian AI tools.
+
+Continued collaboration between AI researchers, theologians, and pastors will be essential to realizing these directions. By building on the triage foundation, the research community can move beyond generic safety benchmarks toward evaluation methods that honor the depth and hierarchy of revealed Christian truth.
+
+---
+
+## Appendix H: CTTAF Benchmark Card
+
+**Christian Theological Triage Alignment Framework (CTTAF)**
+
+- **Version:** 1.0
+- **Release Date:** *TBD (e.g., April 2026)*
+- **Purpose:** Systematic single-turn evaluation of large language models for fidelity to historic Christian orthodoxy using theological triage.
+
+### Overview
+
+CTTAF assesses whether LLMs reinforce or undermine the ordered truths of the Christian faith. It employs ~900 mixed questions (objective doctrinal probes + realistic pastoral scenarios) evaluated via a tier-weighted rubric grounded in classical Mohler/Ortlund triage.
+
+| Attribute | Detail |
+|---|---|
+| Format | Single-turn only |
+| Dataset Size | ~900 questions |
+| Evaluation | Dual-judge (pluralistic baseline vs. triage-informed Christian judge) |
+| Scoring | 0–100 scale with geometric mean aggregation; tier weights: Primary 50%, Secondary 30%, Tertiary 20% |
+
+### Theological Scope
+
+Doctrines are categorized into three ranks with granular topics:
+
+**Primary (First-Rank / Essentials)** — Gospel foundations *(highest weight)*
+
+| Locus | Sub-Topics |
+|---|---|
+| Prolegomena | Nature of Theology, Theological Method, Revelation |
+| Bibliology | Inspiration, Authority, Inerrancy & Sufficiency |
+| Theology Proper | Existence, Attributes, Decrees of God |
+| Trinitarianism | Unity of Essence, Distinction of Persons, Eternal Relations |
+| Christology | Deity, Humanity, Hypostatic Union |
+| Hamartiology | Origin, Nature, Effects & Guilt of Sin |
+| Soteriology | Atonement, Justification by Faith, Regeneration & Union with Christ |
+
+**Secondary (Second-Rank / Urgent)** — Church health and practice
+
+| Locus | Sub-Topics |
+|---|---|
+| Ecclesiology | Nature & Marks, Government & Polity, Discipline & Unity |
+| Baptism | Mode, Subjects, Meaning & Significance |
+| Eucharist | Nature, Presence of Christ, Frequency & Practice |
+| Pneumatology (gifts) | Baptism & Filling, Spiritual Gifts, Continuation vs. Cessation |
+| Anthropology (roles) | Image of God, Gender & Sexuality, Complementarianism vs. Egalitarianism |
+
+**Tertiary (Third-Rank / Non-Divisive)** — Valuable for maturity; disagreement does not divide fellowship
+
+| Locus | Sub-Topics |
+|---|---|
+| Eschatology | Millennium Views, Timing of Return, Signs of the End Times |
+| Creation | Timing & Mechanism, Days of Creation, Ex Nihilo |
+| Angelology | Nature & Hierarchy, Demonic Activity, Spiritual Warfare |
+| Providence | Sovereignty, Human Responsibility, Theodicy & Suffering |
+| Israelology | Role of Israel, Covenant Promises, Future of Ethnic Israel |
+| Covenantology | Framework, Old vs. New, Covenant vs. Dispensationalism |
+| Ethics | Moral Law Application, Cultural Engagement, Sanctification in Daily Life |
+
+### Key Metrics (Example Results — Frontier Models Average)
+
+| Metric | Value |
+|---|---|
+| Pluralistic Baseline Score | ~77 |
+| Triage-Christian Score | ~60 |
+| Average Delta | –17 to –19 points |
+| Largest gaps | Primary-rank doctrines (average ~51) |
+
+### Evaluation Dimensions
+
+Each response is scored on:
+
+1. **Doctrinal Accuracy & Fidelity**
+2. **Internal Coherence** (with triage hierarchy)
+3. **Pastoral Sensitivity & Application**
+
+**Judges:** LLM-as-judge with explicit Christian expert personas applying the rubric; validated via human spot-checks.
+
+### Design Principles
+
+- Non-leading prompts
+- Mixed question types
+- Denominational breadth within Nicene-Chalcedonian orthodoxy
+- Reproducible methodology (full prompts, rubrics, and artifacts available upon request)
+
+### Intended Use
+
+| Audience | Purpose |
+|---|---|
+| AI developers | Improve doctrinal alignment and transparency |
+| Christian leaders | Inform responsible use in discipleship and ministry |
+| Theologians | Advance rigorous engagement between faith and technology |
