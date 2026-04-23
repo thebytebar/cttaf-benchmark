@@ -7,6 +7,9 @@ Orchestrates:
 3. Dual-judge evaluation (OpenAI + Anthropic)
 4. Result aggregation with geometric mean
 5. Checkpoint-based resumable execution
+
+Supported target models and their API providers are defined in
+models_config.py.  Use --list-models to print all registered model IDs.
 """
 
 import argparse
@@ -20,12 +23,12 @@ from datetime import datetime
 import time
 
 from utils import (
-    load_csv, parse_judge_output, geometric_mean, save_json, 
+    load_csv, parse_judge_output, geometric_mean, save_json,
     save_checkpoint, load_checkpoint, JudgeResult, JudgeDimensionScore,
     QuestionResult, logger
 )
 
-# Import API clients
+# Import API clients (required for the dual-judge pipeline)
 try:
     from openai import OpenAI
 except ImportError:
@@ -45,7 +48,7 @@ load_dotenv()
 
 class CTTAFBenchmarkEvaluator:
     """Main benchmark evaluator."""
-    
+
     def __init__(self, model: str, output_dir: str, questions_path: str, dry_run: bool = False):
         self.model = model
         self.output_dir = Path(output_dir)
@@ -53,24 +56,30 @@ class CTTAFBenchmarkEvaluator:
         self.dry_run = dry_run
         self.checkpoint_path = self.output_dir / f"checkpoint_{model}.json"
         self.results_path = self.output_dir / f"{model}_results.json"
-        
+
         self.output_dir.mkdir(parents=True, exist_ok=True)
-        
-        # Initialize API clients (skip in dry-run)
+
+        # Initialize judge API clients (skip in dry-run).
+        # OPENAI_API_KEY and ANTHROPIC_API_KEY are required for the dual-judge
+        # pipeline regardless of which model is being evaluated.
         if not dry_run:
             openai_key = os.getenv('OPENAI_API_KEY')
             anthropic_key = os.getenv('ANTHROPIC_API_KEY')
-            
+
             if not openai_key or not anthropic_key:
-                logger.error("Missing API keys. Set OPENAI_API_KEY and ANTHROPIC_API_KEY in .env")
+                logger.error("Missing judge API keys. Set OPENAI_API_KEY and ANTHROPIC_API_KEY in .env")
                 sys.exit(1)
-            
+
             self.openai_client = OpenAI(api_key=openai_key)
             self.anthropic_client = Anthropic(api_key=anthropic_key)
+
+            # Warn early if the target model's provider key is absent
+            from model_providers import validate_model_api_key
+            validate_model_api_key(model)
         else:
             self.openai_client = None
             self.anthropic_client = None
-        
+
         logger.info(f"Initialized evaluator for model: {model}")
     
     def run(self, max_questions: Optional[int] = None):
@@ -154,18 +163,9 @@ class CTTAFBenchmarkEvaluator:
         return results
     
     def _get_model_response(self, question: str) -> str:
-        """Query the target model."""
-        try:
-            response = self.openai_client.chat.completions.create(
-                model=self.model,
-                messages=[{"role": "user", "content": question}],
-                temperature=0.7,
-                max_tokens=500
-            )
-            return response.choices[0].message.content
-        except Exception as e:
-            logger.error(f"Error getting model response: {e}")
-            raise
+        """Query the target model via its registered API provider."""
+        from model_providers import get_model_response
+        return get_model_response(self.model, question)
     
     def _get_judge_evaluations(self, question: dict, response: str) -> List[JudgeResult]:
         """Get evaluations from both judges."""
@@ -290,39 +290,72 @@ Return ONLY valid JSON with no additional text:
 
 def main():
     parser = argparse.ArgumentParser(description="Evaluate LLM on CTTAF benchmark")
-    parser.add_argument("--model", required=True, help="Model to evaluate (e.g., gpt-4, gpt-3.5-turbo)")
+    parser.add_argument(
+        "--model", required=False,
+        help=(
+            "Model to evaluate. Use a registered benchmark ID (e.g. gpt-5.4, "
+            "claude-sonnet-4-6, gemini-3.1-pro, llama-4-maverick, grok-4, "
+            "mistral-large, deepseek-v3, command-r-plus …) or a raw API "
+            "model name. Run --list-models for the full list."
+        )
+    )
     parser.add_argument("--output", default="results", help="Output directory for results")
     parser.add_argument("--questions", default="../../data/questions/cttaf_questions_sample_100.csv",
                        help="Path to questions CSV")
     parser.add_argument("--max-questions", type=int, default=None, help="Limit number of questions (for testing)")
     parser.add_argument("--dry-run", action="store_true", help="Show what would happen without calling APIs")
-    
+    parser.add_argument("--list-models", action="store_true",
+                       help="Print all registered benchmark model IDs and exit")
+
     args = parser.parse_args()
-    
+
+    if args.list_models:
+        from models_config import MODEL_REGISTRY, NO_PUBLIC_API, PROVIDERS
+        print("\nRegistered benchmark model IDs:")
+        print("=" * 60)
+        current_provider = None
+        for mid in sorted(MODEL_REGISTRY.keys()):
+            entry = MODEL_REGISTRY[mid]
+            provider = entry["provider"]
+            desc = PROVIDERS[provider]["description"]
+            if provider != current_provider:
+                print(f"\n  [{desc}]")
+                current_provider = provider
+            print(f"    {mid}  →  {entry['model_id']}")
+        print("\nModels WITHOUT public API access:")
+        print("=" * 60)
+        for mid, note in NO_PUBLIC_API.items():
+            print(f"  {mid}: {note}")
+        print()
+        sys.exit(0)
+
+    if not args.model:
+        parser.error("--model is required (or use --list-models to see available models)")
+
     # Resolve relative paths
     questions_path = Path(args.questions)
     if not questions_path.is_absolute():
         questions_path = Path(__file__).parent.parent / questions_path
-    
+
     logger.info(f"Starting CTTAF benchmark evaluation")
     logger.info(f"  Model: {args.model}")
     logger.info(f"  Questions: {questions_path}")
     logger.info(f"  Output: {args.output}")
-    
+
     if args.dry_run:
         logger.info("  Mode: DRY RUN (no API calls)")
-    
+
     if not questions_path.exists():
         logger.error(f"Questions file not found: {questions_path}")
         sys.exit(1)
-    
+
     evaluator = CTTAFBenchmarkEvaluator(
         model=args.model,
         output_dir=args.output,
         questions_path=str(questions_path),
         dry_run=args.dry_run
     )
-    
+
     evaluator.run(max_questions=args.max_questions)
 
 

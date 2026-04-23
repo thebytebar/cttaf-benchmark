@@ -41,6 +41,9 @@ evaluation/results/*
 data/*.db
 *.cache
 
+# Logs
+benchmark.log
+
 # Environment
 .env
 .env.local
