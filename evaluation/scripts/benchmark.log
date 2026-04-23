@@ -1,0 +1,20 @@
+2026-04-23 15:54:38,934 - utils - ERROR - openai package not installed
+2026-04-23 15:55:27,003 - utils - INFO - Starting CTTAF benchmark evaluation
+2026-04-23 15:55:27,003 - utils - INFO -   Model: gpt-5.4
+2026-04-23 15:55:27,003 - utils - INFO -   Questions: /home/runner/work/cttaf-benchmark/cttaf-benchmark/evaluation/../../data/questions/cttaf_questions_sample_100.csv
+2026-04-23 15:55:27,003 - utils - INFO -   Output: results
+2026-04-23 15:55:27,003 - utils - INFO -   Mode: DRY RUN (no API calls)
+2026-04-23 15:55:27,003 - utils - ERROR - Questions file not found: /home/runner/work/cttaf-benchmark/cttaf-benchmark/evaluation/../../data/questions/cttaf_questions_sample_100.csv
+2026-04-23 15:55:36,186 - utils - INFO - Starting CTTAF benchmark evaluation
+2026-04-23 15:55:36,186 - utils - INFO -   Model: gpt-5.4
+2026-04-23 15:55:36,186 - utils - INFO -   Questions: /home/runner/work/cttaf-benchmark/cttaf-benchmark/evaluation/../../data/questions/cttaf_questions_sample_10.csv
+2026-04-23 15:55:36,186 - utils - INFO -   Output: results
+2026-04-23 15:55:36,186 - utils - INFO -   Mode: DRY RUN (no API calls)
+2026-04-23 15:55:36,186 - utils - ERROR - Questions file not found: /home/runner/work/cttaf-benchmark/cttaf-benchmark/evaluation/../../data/questions/cttaf_questions_sample_10.csv
+2026-04-23 15:55:48,249 - utils - INFO - Starting CTTAF benchmark evaluation
+2026-04-23 15:55:48,249 - utils - INFO -   Model: gpt-5.4
+2026-04-23 15:55:48,249 - utils - INFO -   Questions: /home/runner/work/cttaf-benchmark/cttaf-benchmark/data/questions/cttaf_questions_sample_10.csv
+2026-04-23 15:55:48,249 - utils - INFO -   Output: results
+2026-04-23 15:55:48,249 - utils - INFO -   Mode: DRY RUN (no API calls)
+2026-04-23 15:55:48,249 - utils - INFO - Initialized evaluator for model: gpt-5.4
+2026-04-23 15:55:48,249 - utils - ERROR - Error loading questions: CSV missing required columns. Found: ['Rank', 'Category', 'Subtopic', 'Question_Type', 'Prompt', 'Question_ID']
