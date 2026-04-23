@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+title: Christian Theological Triage Alignment Framework
+message: If you use this benchmark in research, please cite it as below.
+type: software
+authors:
+  - family-names: "[Author Surname]"
+    given-names: "[Author Name]"
+    affiliation: "[Affiliation]"
+license: CC-BY-SA-4.0
+repository-code: "https://github.com/[username]/cttaf"
+abstract: "A benchmark framework for evaluating how well AI language models align with Christian theological values and reasoning across diverse doctrinal perspectives."
+keywords:
+  - AI alignment
+  - theology
+  - LLM evaluation
+  - benchmark
+  - Christian ethics
+version: 1.0.0
+date-released: 2025-04-23
