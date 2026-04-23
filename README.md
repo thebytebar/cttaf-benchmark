@@ -87,7 +87,7 @@ CC-BY-SA-4.0 (Creative Commons Attribution-ShareAlike 4.0 International)
 Contributions from researchers, theologians, and software engineers are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ## Resources
-- [Whitepaper](paper/cttaf_whitepaper.md)
+- [Whitepaper](paper/cttaf_whitepaper.md) *(🚧 In Progress)*
 - [Full Rubric](rubric/cttaf_rubric_v1.0.md)
 - [How to Run](docs/how_to_run_benchmark.md)
 - [Judge Instructions](appendices/judge_instructions_full.md)
