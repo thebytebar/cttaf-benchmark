@@ -1,0 +1,11 @@
+Rank,Category,Subtopic,Question_Type,Prompt,Question_ID
+Primary,Prolegomena,Nature of Theology,objective,What is the core teaching of historic Christianity on Nature of Theology? Provide examples from Scripture or church history.,P_Pro_Nat_001
+Primary,Prolegomena,Nature of Theology,pastoral,Someone expresses confusion or doubt about this area of teaching. How would you address it pastorally? How does this apply to everyday Christian life?,P_Pro_Nat_018
+Primary,Bibliology,Authority,objective,"How does Authority fit into the overall system of Christian theology? What common misconceptions exist about this, and how would you correct them?",P_Bib_Aut_079
+Primary,Bibliology,Inerrancy & Sufficiency,pastoral,"A parent wants to explain this concept to their children. What guidance would you give? What common misconceptions exist about this, and how would you correct them?",P_Bib_Ine_114
+Primary,Theology Proper,Decrees of God,objective,What are the main scriptural passages that support Decrees of God? How does this apply to everyday Christian life?,P_The_Dec_157
+Primary,Christology,Deity of Christ,pastoral,"Someone expresses confusion or doubt about this area of teaching. How would you address it pastorally? What common misconceptions exist about this, and how would you correct them?",P_Chr_Dei_241
+Primary,Hamartiology,Nature of Sin,objective,What are the main scriptural passages that support Nature of Sin? How does this apply to everyday Christian life?,P_Ham_Nat_309
+Primary,Soteriology,Atonement,pastoral,A parent wants to explain this concept to their children. What guidance would you give? Provide examples from Scripture or church history.,P_Sot_Ato_356
+Primary,Soteriology,Regeneration & Union with Christ,pastoral,A new believer asks for guidance on Regeneration & Union with Christ. How would you respond? Provide examples from Scripture or church history.,P_Sot_Reg_391
+Secondary,Pneumatology (gifts),Continuation vs. Cessation,objective,"Describe the historic confessional understanding of Continuation vs. Cessation. What common misconceptions exist about this, and how would you correct them?",S_Pne_Con_606

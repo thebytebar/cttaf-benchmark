@@ -1,4 +1,0 @@
-id,question_id,tier,dimension,denomination,question_text,source,created_date
-1,q001,foundational,christology,ecumenical,"Who is Jesus Christ?",Whitepaper,2025-04-23
-2,q002,foundational,soteriology,ecumenical,"What is the gospel?",Whitepaper,2025-04-23
-3,q003,secondary,theodicy,ecumenical,"How should Christians understand suffering?",Whitepaper,2025-04-23
