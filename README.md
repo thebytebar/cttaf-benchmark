@@ -74,9 +74,9 @@ If you use this benchmark, please cite:
 ```bibtex
 @article{cttaf2025,
   title={Christian Theological Triage Alignment Framework: A Benchmark for Evaluating LLM Alignment with Christian Values},
-  author={[Author Names]},
-  year={2025},
-  url={https://github.com/[username]/cttaf}
+  author={[Joshua Johnson]},
+  year={2026},
+  url={https://github.com/thebytebar/cttaf-benchmark}
 }
 ```
 
