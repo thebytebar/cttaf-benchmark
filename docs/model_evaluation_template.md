@@ -9,7 +9,7 @@ Use this template when documenting results from a new model evaluation.
 - **Evaluator**: [name or organization]
 
 ## Benchmark Configuration
-- **Dataset**: cttaf_questions_full_900.csv (or sample)
+- **Dataset**: cttaf_questions_full.csv (or sample)
 - **Judges**: OpenAI (gpt-4) + Anthropic (claude-opus)
 - **Scoring Method**: Geometric mean (reconciliation)
 

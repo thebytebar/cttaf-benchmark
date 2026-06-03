@@ -318,7 +318,7 @@ def main():
     )
     parser.add_argument("--output", default="results", help="Output directory for results")
     parser.add_argument("--questions", default="../../data/questions/cttaf_questions_sample_50.csv",
-                       help="Path to questions CSV (use the improved sample or full_900.csv for the diverse set)")
+                       help="Path to questions CSV (use the improved sample or full.csv for the diverse set)")
     parser.add_argument("--max-questions", type=int, default=None, help="Limit number of questions (for testing)")
     parser.add_argument("--dry-run", action="store_true", help="Show what would happen without calling APIs")
     parser.add_argument("--list-models", action="store_true",

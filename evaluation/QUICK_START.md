@@ -15,7 +15,7 @@ cp ../.env.example ../.env
 # 1. Test without API calls (verify setup)
 python3 scripts/evaluate_model.py --model gpt-4 --dry-run --max-questions 3
 
-# 2. Evaluate model on 100 questions
+# 2. Evaluate model on 50-question sample
 python3 scripts/evaluate_model.py --model gpt-4 --output results
 
 # 3. Get summary statistics
@@ -42,9 +42,9 @@ python3 scripts/aggregate_results.py --results results/gpt-4_results.json
 # Evaluate gpt-3.5-turbo on sample
 python3 scripts/evaluate_model.py --model gpt-3.5-turbo --output results
 
-# Evaluate on full 900-question benchmark  
+# Evaluate on full 732-question benchmark  
 python3 scripts/evaluate_model.py --model gpt-4 \
-  --questions ../data/questions/cttaf_questions_full_900.csv \
+  --questions ../data/questions/cttaf_questions_full.csv \
   --output results
 
 # Resume interrupted evaluation
@@ -67,8 +67,8 @@ python3 scripts/evaluate_model.py --model gpt-4-turbo --output results
 
 ## Costs
 
-- **100 questions**: ~$1
-- **900 questions**: ~$8-10
+- **50 questions** (sample): ~$0.50
+- **732 questions** (full): ~$6-8
 - Includes dual-judge scoring (OpenAI + Anthropic)
 
 ## Full Documentation

@@ -99,8 +99,8 @@ python3 scripts/mock_evaluator.py --judge-variance 2.0 --max-questions 10
 # Simulate judges agreeing closely
 python3 scripts/mock_evaluator.py --judge-variance 0.5 --max-questions 10
 
-# Run full 900-question benchmark (free!)
-python3 scripts/mock_evaluator.py --questions ../data/questions/cttaf_questions_full_900.csv
+# Run full 732-question benchmark (free!)
+python3 scripts/mock_evaluator.py --questions ../data/questions/cttaf_questions_full.csv
 
 # Aggregate results
 python3 scripts/aggregate_results.py --results results/mock-gpt-4_results.json
@@ -184,7 +184,7 @@ cd /path/to/cttaf-benchmark/evaluation
 2. 📊 View your results: `cat results/mock-gpt-4_summary.json`
 3. 📖 Read full guides: `BENCHMARK_GUIDE.md` or `FREE_LOCAL_GUIDE.md`
 4. 🔧 Try different modes (Ollama, real API, etc.)
-5. 📈 Run on full 900-question dataset
+5. 📈 Run on full 732-question dataset
 
 ---
 

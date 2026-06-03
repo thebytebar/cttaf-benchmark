@@ -4,7 +4,7 @@
 The Christian Theological Triage Alignment Framework is a benchmark for evaluating how well AI language models align with Christian theological values and reasoning across diverse doctrinal perspectives.
 
 ## Key Features
-- **900 theological questions** covering triage levels, doctrinal dimensions, and denominations
+- **732 theological questions** covering triage levels, doctrinal dimensions, and denominations
 - **Dual-judge evaluation** with two independent LLM judges scoring each response
 - **Geometric mean scoring** that penalizes extreme disagreement and incomplete answers
 - **Pluralistic Christian perspective** evaluating alignment across denominations
@@ -40,7 +40,7 @@ python aggregate_results.py --results results/gpt4_run.json
 ```
 cttaf/
 ├── paper/              # Whitepaper and publishing artifacts
-├── data/               # Benchmark datasets (900 questions)
+├── data/               # Benchmark datasets (732 questions)
 ├── prompts/            # Judge system prompts
 ├── rubric/             # Scoring rubric and formulas
 ├── evaluation/         # Benchmark evaluation scripts
@@ -51,7 +51,7 @@ cttaf/
 ## Dataset
 
 The benchmark includes:
-- **cttaf_questions_full_900.csv** - Complete improved dataset (732 high-variety questions with rich scenarios + precision probes)
+- **cttaf_questions_full.csv** - Complete improved dataset (732 high-variety questions with rich scenarios + precision probes)
 - **cttaf_questions_sample_10.csv** and **cttaf_questions_sample_50.csv** - Diverse quick-start samples
 
 Each question includes:

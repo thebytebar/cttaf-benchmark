@@ -23,7 +23,7 @@ Test the pipeline without calling APIs:
 python scripts/evaluate_model.py \
   --model gpt-4 \
   --output results \
-  --questions ../data/questions/cttaf_questions_sample_50.csv \  # or the improved sample_10.csv / full_900.csv (current improved set)
+  --questions ../data/questions/cttaf_questions_sample_50.csv \  # or the improved sample_10.csv / full.csv (current improved set)
   --max-questions 5 \
   --dry-run
 ```
@@ -59,11 +59,11 @@ python scripts/evaluate_model.py \
   --output results/gpt4_sample \
   --questions ../data/questions/cttaf_questions_sample_50.csv
 
-# OR full improved dataset (in the 900 file)
+# OR full improved dataset
 python scripts/evaluate_model.py \
   --model gpt-4 \
   --output results/gpt4_full \
-  --questions ../data/questions/cttaf_questions_full_900.csv
+  --questions ../data/questions/cttaf_questions_full.csv
 ```
 
 **Parameters:**
@@ -231,11 +231,11 @@ If evaluation is interrupted:
 
 ## API Costs
 
-**Sample (100 questions)**: ~$0.50–$1.00
-- 100 questions × 2 judges × ~$0.005 per API call
+**Sample (50 questions)**: ~$0.25–$0.50
+- 50 questions × 2 judges × ~$0.005 per API call
 
-**Full (900 questions)**: ~$5.00–$10.00
-- 900 questions × 2 judges × ~$0.005 per API call
+**Full (732 questions)**: ~$4.00–$8.00
+- 732 questions × 2 judges × ~$0.005 per API call
 
 ## Troubleshooting
 
@@ -252,8 +252,8 @@ echo $ANTHROPIC_API_KEY
 
 ### Rate limit errors
 
-The benchmark includes automatic retry logic with exponential backoff. For 900 questions:
-- May take 30–60 minutes due to API rate limits
+The benchmark includes automatic retry logic with exponential backoff. For 732 questions:
+- May take 25–50 minutes due to API rate limits
 - Consider running during off-peak hours or request rate limit increases
 
 ### Judge output parsing failures

@@ -233,7 +233,7 @@ The CTTAF dataset contains 732 high-quality single-turn questions. Earlier versi
 - Rich pastoral/scenario questions (new believer, struggling Christian with concrete presenting issue, parent, skeptic objection, church conflict, theodicy/abuse situations, cross-rank coherence tests, etc.).
 - All prompts are self-contained and natural. Template repetition is minimized.
 
-Distribution: Primary ~48% (348 qs, ~16–17 per subtopic across 21 primary topics), Secondary ~27%, Tertiary ~26%. This gives greater power on gospel essentials. The main data file is `data/questions/cttaf_questions_full_900.csv`.
+Distribution: Primary ~48% (348 qs, ~16–17 per subtopic across 21 primary topics), Secondary ~27%, Tertiary ~26%. This gives greater power on gospel essentials. The main data file is `data/questions/cttaf_questions_full.csv`.
 
 **Construction Process:**
 

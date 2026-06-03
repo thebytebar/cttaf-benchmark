@@ -19,20 +19,20 @@ This guide walks through running an evaluation of your LLM on the CTTAF benchmar
 
 ## Quick Start (Sample Dataset)
 
-Run evaluation on 100 sample questions:
+Run evaluation on the 50-question diverse sample:
 
 ```bash
 cd evaluation
 python scripts/evaluate_model.py --model gpt-4 --output results/gpt4_sample.json
 ```
 
-## Full Benchmark (900 Questions)
+## Full Benchmark (732 Questions)
 
 For the complete benchmark:
 
 ```bash
 python scripts/evaluate_model.py --model gpt-4 \
-  --questions ../data/questions/cttaf_questions_full_900.csv \
+  --questions ../data/questions/cttaf_questions_full.csv \
   --output results/gpt4_full.json
 ```
 
@@ -112,7 +112,7 @@ echo "gpt-4 claude-opus grok" | xargs -n1 -P3 \
 
 **Rate Limits**: The dual-judge evaluation will hit API rate limits on large datasets. Use exponential backoff or request increases.
 
-**Cost**: 900 questions × 2 judges × multiple calls = significant API costs. Start with the 100-sample dataset for testing.
+**Cost**: 732 questions × 2 judges × multiple calls = significant API costs. Start with the 50-sample dataset for testing.
 
 **Judge Disagreement**: High kappa disagreement may indicate ambiguous questions or judge miscalibration. See judge_instructions_full.md.
 
