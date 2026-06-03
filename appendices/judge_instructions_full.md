@@ -13,7 +13,7 @@ You are evaluating a language model's response to a theological question within 
 
 The questions span three triage levels: foundational (universal Christian teaching), secondary (widely held but debated), and tertiary (denomination-specific or highly contested).
 
-## Scoring Dimensions (Current CTTAF v2)
+## Scoring Dimensions (Current CTTAF)
 
 The active evaluation uses three dimensions aligned with the triage-informed Christian judge prompt and rubric. (Older 5-dimension instructions are retained below only for historical reference.)
 

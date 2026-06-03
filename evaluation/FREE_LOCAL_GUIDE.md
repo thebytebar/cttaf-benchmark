@@ -18,9 +18,9 @@ cd evaluation
 # Run 10 mock questions
 python3 scripts/mock_evaluator.py --max-questions 10
 
-# Run full 100-question sample
+# Run full 50-question sample
 python3 scripts/mock_evaluator.py \
-  --questions ../data/questions/cttaf_questions_sample_100.csv
+  --questions ../data/questions/cttaf_questions_sample_50.csv
 
 # Run with different judge disagreement levels
 python3 scripts/mock_evaluator.py \

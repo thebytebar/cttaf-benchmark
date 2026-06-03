@@ -285,7 +285,7 @@ def main():
                        help="Model name (for results labeling only)")
     parser.add_argument("--output", default="results",
                        help="Output directory for results")
-    parser.add_argument("--questions", default="../../data/questions/cttaf_questions_sample_100.csv",
+    parser.add_argument("--questions", default="../../data/questions/cttaf_questions_sample_50.csv",
                        help="Path to questions CSV")
     parser.add_argument("--max-questions", type=int, default=None,
                        help="Limit number of questions")

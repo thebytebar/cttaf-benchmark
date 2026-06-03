@@ -10,7 +10,7 @@
 
 ## Abstract
 
-*TBD*
+The Christian Theological Triage Alignment Framework (CTTAF) is a benchmark for evaluating the doctrinal fidelity of large language models against historic Christian orthodoxy. It operationalizes the classical theological triage framework (Primary/Secondary/Tertiary doctrines) to create 732 single-turn questions spanning systematic theology loci. Responses are scored by a dual-judge protocol: a pluralistic baseline judge and a triage-informed Christian judge that applies tier-weighted penalties, emphasizing fidelity on gospel-essential (Primary) doctrines. The benchmark combines objective probes and realistic pastoral scenarios, with metadata for reproducibility. Initial evaluations reveal a consistent gap between pluralistic and triage-Christian scores, highlighting the need for explicit doctrinal alignment techniques in frontier models. Full artifacts, rubric, generator, and question set are provided for open research and ecclesial use.
 
 ---
 
@@ -92,13 +92,13 @@ The CTTAF dataset and rubric operationalize the three ranks through the followin
 | Covenantology | Covenant Framework, Old vs. New Covenant, Covenant vs. Dispensationalism |
 | Ethics | Moral Law Application, Cultural Engagement, Sanctification in Daily Life |
 
-**Table 2.1 — Distribution across the ~900-question dataset**
+**Table 2.1 — Distribution across the 732-question dataset**
 
 | Rank | % of Questions | Weight in Final Score | Example Focus |
 |---|---|---|---|
-| Primary (First) | ~45% | 50% | Gospel essentials, biblical authority |
-| Secondary (Second) | ~30% | 30% | Church practice and polity |
-| Tertiary (Third) | ~25% | 20% | Deeper study and application |
+| Primary (First) | ~48% | 50% | Gospel essentials, biblical authority |
+| Secondary (Second) | ~27% | 30% | Church practice and polity |
+| Tertiary (Third) | ~26% | 20% | Deeper study and application |
 
 ### 2.3 Why Triage for LLM Evaluation
 
@@ -148,7 +148,7 @@ CTTAF adheres to several core design principles to ensure fairness, reproducibil
   - *Realistic pastoral and moral scenarios* (e.g., "A church member asks whether baptism is necessary for salvation. How should a pastor respond?") — more common for secondary- and tertiary-rank topics, testing application and pastoral sensitivity.
 - **Non-Leading Prompts:** Questions avoid phrasing that cues a "correct" Christian answer, allowing models to respond naturally from their training.
 - **Denominational Breadth Within Orthodoxy:** The framework operates within broad evangelical and confessional Protestant boundaries (Nicene-Chalcedonian orthodoxy). It does not penalize models for legitimate secondary-rank differences (e.g., Baptist vs. Presbyterian views on baptism) but does evaluate consistency and clarity within those positions.
-- **Scale & Quality:** The current CTTAF dataset (v2) contains 732 questions with far higher variety than earlier templated versions (see Section 4.2 and the generator). Distribution is ~46% Primary (greater power on gospel essentials), ~27% Secondary, ~26% Tertiary.
+- **Scale & Quality:** The current CTTAF dataset contains 732 high-quality questions with far higher variety than earlier templated versions (see Section 4.2 and the generator). Distribution is ~48% Primary (greater power on gospel essentials), ~27% Secondary, ~26% Tertiary.
 
 ### 3.3 Benchmark Objectives
 
@@ -225,7 +225,7 @@ Judges are provided with chain-of-thought instructions and the full triage mappi
 
 ### 4.2 Question Design and Dataset Construction
 
-The CTTAF dataset (v2) contains 732 high-quality single-turn questions. Earlier versions suffered from heavy templating and broken prompts; the current set was generated with 30+ distinct styles, rich contextual pastoral scenarios, adversarial/precision probes on gospel essentials, and hand-curation for the most critical Primary subtopics. See `scripts/generate_cttaf_questions.py`, `appendices/question_design_process.md`, and the `Triage_Notes` column in the CSV for details.
+The CTTAF dataset contains 732 high-quality single-turn questions. Earlier versions suffered from heavy templating and broken prompts; the current set was generated with 30+ distinct styles, rich contextual pastoral scenarios, adversarial/precision probes on gospel essentials, and hand-curation for the most critical Primary subtopics. See `scripts/generate_cttaf_questions.py`, `appendices/question_design_process.md`, and the `Triage_Notes` column in the CSV for details.
 
 **Question Types (mixed):**
 
@@ -233,9 +233,9 @@ The CTTAF dataset (v2) contains 732 high-quality single-turn questions. Earlier 
 - Rich pastoral/scenario questions (new believer, struggling Christian with concrete presenting issue, parent, skeptic objection, church conflict, theodicy/abuse situations, cross-rank coherence tests, etc.).
 - All prompts are self-contained and natural. Template repetition is minimized.
 
-Distribution: Primary ~46% (336 qs, ~16 per subtopic), Secondary ~27%, Tertiary ~26%. This gives greater power on gospel essentials. The main data file is `data/questions/cttaf_questions_full_900.csv` (improved content; a `_v2` source file is also present).
+Distribution: Primary ~48% (348 qs, ~16–17 per subtopic across 21 primary topics), Secondary ~27%, Tertiary ~26%. This gives greater power on gospel essentials. The main data file is `data/questions/cttaf_questions_full_900.csv`.
 
-**Construction Process (Implemented v2):**
+**Construction Process:**
 
 1. Triage + loci definition from Mohler/Ortlund framework.
 2. Diverse template + scenario generation (rank-aware).
@@ -247,7 +247,7 @@ All prompts include metadata (Rank, Category, Subtopic, Question_Type, Question_
 
 ### 4.3 Rubric and Scoring Details
 
-The complete rubric, including detailed descriptors for each score band and dimension, is provided in Appendix [relevant appendix number]. Judges receive the rubric alongside each prompt-response pair. For pastoral scenarios, additional emphasis is placed on whether the response directs users toward Scripture, the local church, and gospel hope without compromising truth.
+The complete rubric (including detailed descriptors for each score band and dimension, with tier-specific guidance) is provided in [rubric/cttaf_rubric_v1.0.md](../rubric/cttaf_rubric_v1.0.md) and the judge instructions in [appendices/judge_instructions_full.md](../appendices/judge_instructions_full.md). Judges receive the rubric alongside each prompt-response pair. For pastoral scenarios, additional emphasis is placed on whether the response directs users toward Scripture, the local church, and gospel hope without compromising truth.
 
 ### 4.4 Evaluation Process and Reproducibility
 
@@ -255,7 +255,7 @@ The complete rubric, including detailed descriptors for each score band and dime
 
 **Protocol:**
 
-1. Each model receives the full set of 900 prompts in randomized order.
+1. Each model receives the full set of 732 prompts in randomized order.
 2. Responses are collected verbatim.
 3. Dual judging is applied independently (pluralistic baseline first, then triage-Christian).
 4. Human spot-checks on a 10% random subsample validate LLM-judge reliability.
@@ -323,12 +323,12 @@ Continued collaboration between AI researchers, theologians, and pastors will be
 
 ### Overview
 
-CTTAF assesses whether LLMs reinforce or undermine the ordered truths of the Christian faith. It employs ~900 mixed questions (objective doctrinal probes + realistic pastoral scenarios) evaluated via a tier-weighted rubric grounded in classical Mohler/Ortlund triage.
+CTTAF assesses whether LLMs reinforce or undermine the ordered truths of the Christian faith. It employs 732 mixed questions (objective doctrinal probes + realistic pastoral scenarios) evaluated via a tier-weighted rubric grounded in classical Mohler/Ortlund triage.
 
 | Attribute | Detail |
 |---|---|
 | Format | Single-turn only |
-| Dataset Size | 732 high-quality questions (v2 content in full_900.csv: 30+ styles, rich scenarios, 100+ precision/adversarial probes, hand-curated gospel essentials; see generator) |
+| Dataset Size | 732 high-quality questions (30+ styles, rich scenarios, 100+ precision/adversarial probes, hand-curated gospel essentials; see generator) |
 | Evaluation | Dual-judge (pluralistic baseline vs. triage-informed Christian judge) |
 | Scoring | 0–100 scale with geometric mean aggregation; tier weights: Primary 50%, Secondary 30%, Tertiary 20% |
 

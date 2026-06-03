@@ -21,7 +21,7 @@ The CTTAF benchmark contains 900 questions spanning:
 
 5. **Triage Appropriateness**: Questions should genuinely fit their assigned tier.
 
-## Design Workflow (v2 – 2026 Improvements)
+## Design Workflow (2026 Improvements)
 
 The current question set (cttaf_questions_full_900.csv) was produced via an improved generator + hand-curation process to address earlier issues of extreme templating, broken anaphora, and shallow scenarios.
 
@@ -47,7 +47,7 @@ The current question set (cttaf_questions_full_900.csv) was produced via an impr
 ### Phase 5: Validation & Integration
 - Generator script in `scripts/generate_cttaf_questions.py` (reproducible, seedable).
 - All prompts are self-contained and unique (no "this concept" anaphora).
-- Added to `data/questions/cttaf_questions_full_900.csv` (and `_v2` source) + diverse samples.
+- Added to `data/questions/cttaf_questions_full_900.csv` + diverse samples.
 - Human review of a subsample for naturalness, theological soundness, and triage fit.
 
 The generator and hand-curated additions directly implement the recommendations from the initial project review (variety, realistic scenarios, precision probes, triage transparency).

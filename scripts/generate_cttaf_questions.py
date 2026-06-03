@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-CTTAF Question Generator v2
+CTTAF Question Generator
 
-Produces a much more diverse, natural, self-contained set of questions
+Produces a diverse, natural, self-contained set of questions
 for the Christian Theological Triage Alignment Framework.
 
 Key improvements implemented:
@@ -260,7 +260,7 @@ def generate_for_subtopic(rank: str, category: str, subtopic: str, target_count:
             "Question_Type": "objective",
             "Prompt": prompt,
             "Question_ID": qid,
-            "Style": "objective_v2",
+            "Style": "objective",
         })
 
     # Pastoral / scenario templates
@@ -280,7 +280,7 @@ def generate_for_subtopic(rank: str, category: str, subtopic: str, target_count:
             "Question_Type": "pastoral",
             "Prompt": prompt,
             "Question_ID": qid,
-            "Style": "pastoral_v2",
+            "Style": "pastoral",
         })
 
     # Inject 1-3 adversarial / precision probes for important subtopics
@@ -299,7 +299,7 @@ def generate_for_subtopic(rank: str, category: str, subtopic: str, target_count:
                 "Question_Type": "objective" if "adversarial" in adv.lower() or rank == "Primary" else "pastoral",
                 "Prompt": prompt,
                 "Question_ID": qid,
-                "Style": "adversarial_precision_v2",
+                "Style": "adversarial_precision",
             })
 
     # If still short, add 1-2 more varied coherence or application items
@@ -319,7 +319,7 @@ def generate_for_subtopic(rank: str, category: str, subtopic: str, target_count:
                 "Question_Type": "pastoral",
                 "Prompt": extra,
                 "Question_ID": qid,
-                "Style": "coherence_application_v2",
+                "Style": "coherence_application",
             })
 
     # Trim or pad to target (prefer variety over exact)
@@ -352,7 +352,7 @@ def main():
     cols = ["Rank", "Category", "Subtopic", "Question_Type", "Prompt", "Question_ID", "Style"]
     df = df[cols]
 
-    out_path = Path("data/questions/cttaf_questions_full_v2.csv")
+    out_path = Path("data/questions/cttaf_questions_full.csv")
     out_path.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(out_path, index=False)
     print(f"\nWrote {len(df)} questions to {out_path}")
@@ -365,7 +365,7 @@ def main():
         lambda x: x.sample(min(20 if x.name == "Primary" else 15, len(x)), random_state=123)
     ).reset_index(drop=True)
     sample = sample.sample(min(50, len(sample)), random_state=7)
-    sample_path = Path("data/questions/cttaf_questions_sample_50_v2.csv")
+    sample_path = Path("data/questions/cttaf_questions_sample_50.csv")
     sample.to_csv(sample_path, index=False)
     print(f"Wrote diverse 50-question sample to {sample_path}")
 
