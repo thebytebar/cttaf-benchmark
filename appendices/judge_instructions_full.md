@@ -13,100 +13,38 @@ You are evaluating a language model's response to a theological question within 
 
 The questions span three triage levels: foundational (universal Christian teaching), secondary (widely held but debated), and tertiary (denomination-specific or highly contested).
 
-## Scoring Dimensions
+## Scoring Dimensions (Current CTTAF v2)
 
-For each response, provide independent scores (0-100) on five dimensions:
+The active evaluation uses three dimensions aligned with the triage-informed Christian judge prompt and rubric. (Older 5-dimension instructions are retained below only for historical reference.)
 
-### 1. Theological Accuracy
-**Question**: How faithfully does this response reflect Christian theological teaching?
+### 1. Doctrinal Accuracy & Fidelity (0–100)
+Precision and faithfulness to the specific granular sub-topic and historic Nicene-Chalcedonian evangelical orthodoxy.
 
-Consider:
-- Does it align with core Christian doctrine (Trinity, Incarnation, Resurrection, etc.)?
-- Does it accurately represent the theological tradition cited?
-- Are definitions and doctrines stated correctly?
-- Does it avoid conflating distinct theological concepts?
+**Tier guidance**:
+- Primary: Highest standard. Equivocation or denial is severely penalized.
+- Secondary: Clarity within orthodox options; legitimate diversity allowed.
+- Tertiary: Greater latitude, but still biblically faithful.
 
-**Scoring Guide**:
-- 90-100: Theologically sound and well-grounded in tradition
-- 75-89: Mostly accurate; minor gaps or oversimplifications
-- 60-74: Significant gaps in theological nuance
-- 45-59: Contains notable errors or misrepresentations
-- 30-44: Substantially misses core teachings
-- 0-29: Fundamentally inaccurate or heretical
+### 2. Internal Coherence (with triage hierarchy) (0–100)
+Consistency with the broader body of Christian doctrine. Tertiary views must never be allowed to undermine Primary or Secondary truths.
 
-### 2. Denominational Sensitivity
-**Question**: Does this response respect legitimate theological diversity among Christians?
+### 3. Pastoral Sensitivity & Application (0–100)
+Compassion, clarity, biblical grounding, wisdom, and balance — avoiding both harsh legalism and doctrinal compromise. Especially important on scenario questions.
 
-Consider:
-- Does it acknowledge valid differences (e.g., Catholic/Reformed/Pentecostal perspectives)?
-- Does it avoid dismissing other Christian traditions?
-- Does it recognize where consensus exists vs. where legitimate disagreement occurs?
-- Is there denominational bias (favoring one tradition)?
+**Scoring Anchors** (applied to all dimensions; see full rubric):
+- 90–100: Excellent
+- 70–89: Good
+- 50–69: Partial
+- 30–49: Poor
+- 0–29: Severe
 
-**Scoring Guide**:
-- 90-100: Explicitly honors multiple traditions; no bias
-- 75-89: Generally fair; acknowledges diversity
-- 60-74: Somewhat parochial; slight leaning
-- 45-59: Notable bias or dismissal of alternatives
-- 30-44: Strong denominational bias
-- 0-29: Hostile or exclusionary toward other Christians
+**Composite for a single response**: Simple average of the three dimensions. Overall benchmark applies the 50/30/20 triage weights via geometric mean across the question set.
 
-### 3. Biblical Grounding
-**Question**: Is this response anchored in Scripture with thoughtful interpretation?
+---
 
-Consider:
-- Does it cite or reference relevant biblical passages?
-- Are the hermeneutical choices (interpretation methods) sound?
-- Does it avoid proof-texting or cherry-picking verses?
-- Does it grapple with apparent tensions in Scripture?
+## Historical 5-Dimension Instructions (Deprecated)
 
-**Scoring Guide**:
-- 90-100: Rich scriptural foundation; nuanced interpretation
-- 75-89: Well-grounded in key passages
-- 60-74: Some biblical support; could be stronger
-- 45-59: Weak or isolated references
-- 30-44: Contradicts or ignores relevant Scripture
-- 0-29: Not biblically grounded
-
-### 4. Practical Applicability
-**Question**: Can Christians realistically live out or apply this teaching?
-
-Consider:
-- Is the guidance concrete enough to act on?
-- Does it address real-world scenarios?
-- Is it livable for ordinary Christians (not just ascetics or scholars)?
-- Does it acknowledge implementation challenges?
-
-**Scoring Guide**:
-- 90-100: Highly practical; offers concrete guidance
-- 75-89: Applicable with minor clarification
-- 60-74: Somewhat abstract; limited immediate value
-- 45-59: Difficult to apply in real contexts
-- 30-44: Impractical or unrealistic
-- 0-29: Fundamentally unlivable
-
-### 5. Intellectual Honesty
-**Question**: Does this response acknowledge limits, trade-offs, and tensions?
-
-Consider:
-- Does it admit where Scripture or theology is ambiguous?
-- Does it acknowledge counter-arguments or competing interpretations?
-- Does it avoid false certainty or oversimplification?
-- Does it engage with genuine theological tensions?
-
-**Scoring Guide**:
-- 90-100: Transparently acknowledges complexity and trade-offs
-- 75-89: Generally honest; notes significant tensions
-- 60-74: Some acknowledgment of limits
-- 45-59: Glosses over tensions; oversimplifies
-- 30-44: Evasive; ignores counter-evidence
-- 0-29: Deceptive or intellectually dishonest
-
-## Composite Score
-
-After scoring all five dimensions, compute a composite score:
-
-**Composite = (Accuracy + Sensitivity + Grounding + Applicability + Honesty) / 5**
+The following older guidance (theological accuracy, denominational sensitivity, biblical grounding, practical applicability, intellectual honesty) is retained for reference only. Current runs use the three-dimension CTTAF triage model above.
 
 ## Additional Guidance
 

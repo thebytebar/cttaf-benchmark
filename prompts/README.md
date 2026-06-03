@@ -4,22 +4,15 @@ This folder contains the system prompts for the dual-judge evaluation system.
 
 ## Files
 
-- **judge_pluralistic_baseline.md** - Default pluralistic judge prompt that respects multiple Christian denominations
-- **judge_triage_christian.md** - Alternative judge prompt emphasizing theological triage levels
+- **judge_triage_christian.md** - Primary judge prompt (used for the main CTTAF scores). Applies Mohler/Ortlund triage strictly (Primary/Secondary/Tertiary), scores the three official dimensions (Doctrinal Accuracy & Fidelity, Internal Coherence with triage hierarchy, Pastoral Sensitivity & Application), and references the official rubric.
+- **judge_pluralistic_baseline.md** - Pluralistic/neutral baseline judge (helpfulness, logical coherence, avoidance of harm; no specific Christian doctrinal priors).
 
-## Judge Instructions
-
-Both judges score responses on a 0-100 scale across these dimensions:
-1. Theological Accuracy
-2. Denominational Sensitivity
-3. Biblical Grounding
-4. Practical Applicability
-5. Intellectual Honesty
+Current evaluation code loads the full triage prompt and augments it with per-question Rank + Subtopic + the actual model response. The 3-dimension + triage model is authoritative (see rubric/ and appendices/judge_instructions_full.md for the reconciled current version; older 5-dimension text is retained only for history).
 
 The prompts guide judges to:
-- Avoid denominational bias
-- Recognize legitimate diversity in Christian theology
-- Evaluate both depth and appropriateness
-- Penalize evasion or theological confusion
+- Apply triage weights and strictness correctly (Primary failures are grave).
+- Allow legitimate Secondary diversity while penalizing flattening or evasion.
+- Evaluate pastoral wisdom on scenario questions, not just abstract correctness.
+- Never soften or relativize gospel essentials.
 
-See `appendices/judge_instructions_full.md` for complete guidelines.
+See `rubric/cttaf_rubric_v1.0.md`, `appendices/judge_instructions_full.md`, and the generator/README sections for the full picture.

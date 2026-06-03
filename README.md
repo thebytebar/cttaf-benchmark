@@ -51,14 +51,14 @@ cttaf/
 ## Dataset
 
 The benchmark includes:
-- **cttaf_questions_full_900.csv** - Complete dataset with metadata
-- **cttaf_questions_sample_100.csv** - Quick-start sample
+- **cttaf_questions_full_900.csv** - Complete improved dataset (v2 content: 732 high-variety questions with rich scenarios + precision probes)
+- **cttaf_questions_sample_10.csv** and **cttaf_questions_sample_50_v2.csv** - Diverse quick-start samples
 
 Each question includes:
-- Theological content
-- Triage level (foundational/secondary/tertiary)
-- Doctrinal dimension
-- Denomination context
+- Rank (Primary/Secondary/Tertiary), Category, Subtopic
+- Question_Type (objective / pastoral)
+- Prompt (self-contained, natural, varied)
+- Question_ID + Style + Triage_Notes + Suggested_Triage_Weight (v2 metadata)
 
 ## Evaluation Approach
 

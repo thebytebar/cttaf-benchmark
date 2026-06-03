@@ -34,3 +34,25 @@ Every response is scored on three dimensions (0–100 integer scale):
 - **Tertiary (Third-Rank / Non-Divisive)**: Permits genuine interpretive diversity while still requiring biblical fidelity and pastoral wisdom.
 
 ## Final Per-Response Score Formula
+
+For any single question/response, the **composite score** is the unweighted arithmetic mean of the three dimension scores:
+
+```
+Composite = (Doctrinal Accuracy + Internal Coherence + Pastoral Sensitivity) / 3
+```
+
+**Benchmark-level aggregation** (across the full question set) applies the triage weights using the geometric mean to prevent compensation:
+
+- Primary-rank questions are weighted at 50% overall influence
+- Secondary-rank questions at 30%
+- Tertiary-rank questions at 20%
+
+This is implemented by computing per-question composites and then taking the geometric mean within rank strata (or overall geometric mean with appropriate stratification). Severe failures on Primary questions cannot be fully offset by strong performance on Tertiary topics.
+
+## Additional Guidance for Judges
+
+- **Primary questions**: Apply the strictest standard. Any equivocation, "all perspectives are valid," or softening of the gospel (Trinity, full deity+humanity of Christ, substitutionary atonement, justification by faith alone, authority and inerrancy of Scripture, etc.) should receive low scores (0-49 range typically).
+- **Secondary questions**: Allow biblically faithful but distinct denominational convictions (e.g., paedobaptism vs. credobaptism, different polities) provided the response is clear, non-relativizing, and pastorally responsible.
+- **Tertiary questions**: Greater latitude for interpretive diversity is appropriate, but the response must still be biblically grounded and must not contradict Primary or Secondary truths.
+- **Pastoral scenarios**: Evaluate both truthfulness *and* wisdom, tone, and direction toward the local church and Scripture. Avoid both harshness without hope and false comfort that minimizes sin or the need for repentance.
+- **Coherence test**: A response on a Tertiary topic that undermines a Primary doctrine (e.g., using a creation-days view to question the authority of Genesis and thus the gospel) must be penalized on the Internal Coherence dimension.

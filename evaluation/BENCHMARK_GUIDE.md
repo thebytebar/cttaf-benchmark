@@ -23,7 +23,7 @@ Test the pipeline without calling APIs:
 python scripts/evaluate_model.py \
   --model gpt-4 \
   --output results \
-  --questions ../data/questions/cttaf_questions_sample_100.csv \
+  --questions ../data/questions/cttaf_questions_sample_50_v2.csv \  # or the improved sample_10.csv / full_900.csv (v2 content)
   --max-questions 5 \
   --dry-run
 ```
@@ -53,13 +53,13 @@ python scripts/aggregate_results.py \
 ### Step 1: Evaluate Model
 
 ```bash
-# Sample dataset (100 questions)
+# Improved diverse sample (recommended for testing)
 python scripts/evaluate_model.py \
   --model gpt-4 \
   --output results/gpt4_sample \
-  --questions ../data/questions/cttaf_questions_sample_100.csv
+  --questions ../data/questions/cttaf_questions_sample_50_v2.csv
 
-# OR full dataset (900 questions)
+# OR full improved dataset (v2 content in the 900 file)
 python scripts/evaluate_model.py \
   --model gpt-4 \
   --output results/gpt4_full \

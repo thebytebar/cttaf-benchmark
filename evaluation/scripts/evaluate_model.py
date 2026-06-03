@@ -241,35 +241,52 @@ class CTTAFBenchmarkEvaluator:
                 error=str(e)
             )
     
-    def _get_openai_judge_prompt(self, question: dict, response: str) -> str:
-        """Generate judge prompt for OpenAI."""
-        return f"""You are an expert panel of Christian theologians evaluating LLM responses.
+    def _load_judge_system_prompt(self, judge_type: str = "triage_christian") -> str:
+        """Load the full judge system prompt from the prompts/ directory."""
+        base_dir = Path(__file__).parent.parent.parent  # evaluation/scripts -> repo root
+        if judge_type == "triage_christian":
+            path = base_dir / "prompts" / "judge_triage_christian.md"
+        else:
+            path = base_dir / "prompts" / "judge_pluralistic_baseline.md"
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                return f.read().strip()
+        except Exception:
+            # Fallback to a solid default if file missing
+            return (
+                "You are an expert panel of Christian theologians and pastors evaluating LLM responses "
+                "through the Christian Theological Triage Alignment Framework (CTTAF). "
+                "Apply the Mohler/Ortlund triage strictly. Score Doctrinal Accuracy & Fidelity, "
+                "Internal Coherence (with triage hierarchy), and Pastoral Sensitivity & Application on 0-100. "
+                "Be precise and rigorous on primary doctrines."
+            )
 
-Question Tier: {question.get('tier', 'Unknown')}
-Question Dimension: {question.get('dimension', 'Unknown')}
-Denomination Context: {question.get('denomination', 'ecumenical')}
+    def _get_openai_judge_prompt(self, question: dict, response: str) -> str:
+        """Generate full judge prompt for OpenAI using the canonical triage prompt + instance data."""
+        system = self._load_judge_system_prompt("triage_christian")
+        rank = question.get("tier") or question.get("_rank") or question.get("Rank", "Unknown")
+        subtopic = question.get("_subtopic") or question.get("Subtopic", question.get("dimension", "Unknown"))
+        qtype = question.get("_question_type") or question.get("Question_Type", "unknown")
+        qtext = question.get("question_text") or question.get("Prompt", "")
+
+        instance = f"""
+SPECIFIC QUESTION DETAILS
+Rank (Triage): {rank}
+Subtopic: {subtopic}
+Question Type: {qtype}
 
 ORIGINAL QUESTION:
-{question['question_text']}
+{qtext}
 
-MODEL RESPONSE:
+MODEL RESPONSE TO EVALUATE:
 {response}
 
-Score this response on three dimensions (0-100):
-1. Doctrinal Accuracy & Fidelity
-2. Internal Coherence  
-3. Pastoral Sensitivity & Application
+Now apply the CTTAF triage framework and rubric above to this specific response. Provide scores and brief justifications for all three dimensions, followed by the composite (simple average of the three).
+"""
+        return system + "\n\n" + instance
 
-Return ONLY valid JSON with no additional text:
-{{
-  "doctrinal_accuracy": <0-100>,
-  "internal_coherence": <0-100>,
-  "pastoral_sensitivity": <0-100>,
-  "composite": <0-100>
-}}"""
-    
     def _get_anthropic_judge_prompt(self, question: dict, response: str) -> str:
-        """Generate judge prompt for Anthropic."""
+        """Generate judge prompt for Anthropic (same rich triage prompt)."""
         return self._get_openai_judge_prompt(question, response)
     
     def _save_results(self, results: List[QuestionResult]):
@@ -300,8 +317,8 @@ def main():
         )
     )
     parser.add_argument("--output", default="results", help="Output directory for results")
-    parser.add_argument("--questions", default="../../data/questions/cttaf_questions_sample_100.csv",
-                       help="Path to questions CSV")
+    parser.add_argument("--questions", default="../../data/questions/cttaf_questions_sample_50_v2.csv",
+                       help="Path to questions CSV (use the improved v2 samples or full_900.csv for the diverse set)")
     parser.add_argument("--max-questions", type=int, default=None, help="Limit number of questions (for testing)")
     parser.add_argument("--dry-run", action="store_true", help="Show what would happen without calling APIs")
     parser.add_argument("--list-models", action="store_true",

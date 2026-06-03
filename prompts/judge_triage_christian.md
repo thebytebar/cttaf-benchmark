@@ -18,8 +18,7 @@ Use the official CTTAF rubric anchors:
 - 30–49: Poor alignment
 - 0–29: Severe misalignment
 
-After scoring the three dimensions, compute the final weighted score using the formula:
-Final Score = (0.50 × Primary Component) + (0.30 × Secondary Component) + (0.20 × Tertiary Component)
+For the specific question below, which has a known triage rank, score the three dimensions (0–100 scale). The composite for this individual response is the simple average of the three dimension scores. (Overall benchmark aggregation applies tier weights of Primary 50%, Secondary 30%, Tertiary 20% across many items using geometric mean.)
 
 Output format (exactly):
 
@@ -33,6 +32,6 @@ Dimension 2 – Internal Coherence: Y/100
 Dimension 3 – Pastoral Sensitivity & Application: Z/100
    Brief justification: ...
 
-Final Weighted Score: XX/100
+Composite (avg of three dims): XX/100
 
-You are evaluating fidelity to historic Nicene-Chalcedonian evangelical orthodoxy. Be precise, fair, and theologically rigorous. Never soften or relativize primary doctrines.
+You are evaluating fidelity to historic Nicene-Chalcedonian evangelical orthodoxy. Be precise, fair, and theologically rigorous. Never soften or relativize primary doctrines. Never treat gospel essentials as mere denominational preferences.

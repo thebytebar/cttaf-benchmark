@@ -71,20 +71,50 @@ class QuestionResult:
 
 
 def load_csv(filepath: str) -> List[Dict[str, Any]]:
-    """Load questions from CSV file with validation."""
+    """Load questions from CSV file with validation.
+    
+    Supports two formats:
+    - Legacy/internal: id, question_id, tier, dimension, denomination, question_text
+    - Current CTTAF data: Rank, Category, Subtopic, Question_Type, Prompt, Question_ID
+    """
     questions = []
     try:
         with open(filepath, 'r', encoding='utf-8') as f:
             reader = csv.DictReader(f)
+            fields = set(reader.fieldnames or [])
+            
+            # Detect format
+            is_cttaf_format = {'Rank', 'Category', 'Subtopic', 'Question_Type', 'Prompt', 'Question_ID'}.issubset(fields)
             required_cols = {'id', 'question_id', 'tier', 'dimension', 'denomination', 'question_text'}
-            if not required_cols.issubset(reader.fieldnames or set()):
+            
+            if not is_cttaf_format and not required_cols.issubset(fields):
                 raise ValueError(f"CSV missing required columns. Found: {reader.fieldnames}")
             
             for row_num, row in enumerate(reader, start=2):
-                if not row.get('question_text', '').strip():
+                if is_cttaf_format:
+                    # Map CTTAF columns to expected internal schema
+                    mapped = {
+                        'id': row.get('Question_ID', ''),
+                        'question_id': row.get('Question_ID', ''),
+                        'tier': row.get('Rank', 'Secondary'),
+                        'dimension': row.get('Category', row.get('Subtopic', 'unknown')),
+                        'denomination': 'ecumenical',  # default; extend CSV later if needed
+                        'question_text': row.get('Prompt', ''),
+                        # Preserve original for reference
+                        '_rank': row.get('Rank'),
+                        '_category': row.get('Category'),
+                        '_subtopic': row.get('Subtopic'),
+                        '_question_type': row.get('Question_Type'),
+                    }
+                    qtext = mapped['question_text']
+                else:
+                    mapped = row
+                    qtext = row.get('question_text', '')
+                
+                if not qtext or not str(qtext).strip():
                     logger.warning(f"Row {row_num}: Skipping question with empty text")
                     continue
-                questions.append(row)
+                questions.append(mapped)
         
         logger.info(f"Loaded {len(questions)} questions from {filepath}")
         return questions
@@ -157,7 +187,7 @@ def _parse_with_regex(text: str) -> Optional[JudgeDimensionScore]:
         'doctrinal_accuracy': r'Dimension 1.*?:.*?(\d+)/100',
         'internal_coherence': r'Dimension 2.*?:.*?(\d+)/100',
         'pastoral_sensitivity': r'Dimension 3.*?:.*?(\d+)/100',
-        'composite': r'Final.*?Score.*?:.*?(\d+)/100'
+        'composite': r'(?:Final Weighted Score|Composite).*?:.*?(\d+)(?:/100)?'
     }
     
     scores = {}
